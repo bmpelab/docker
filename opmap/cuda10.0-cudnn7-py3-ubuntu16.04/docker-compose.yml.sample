@@ -1,0 +1,11 @@
+version: '2.3'
+services:
+  [user_name]_opmap:
+    image: bmpelab/opmap:cuda10.0-cudnn7-py3-ubuntu16.04
+    runtime: nvidia
+    container_name: [user_name]_opmap
+    ports:
+      - "[user_id*10+n]:8888"
+    volumes:
+      - ../:/notebooks
+      - /data:/data
