@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
                    cuda-cusparse-10-0 \
                    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install nvinfer-runtime-trt-repo-ubuntu1604-5.0.2-ga-cuda10.0
+RUN apt-get update && apt-get install nvinfer-runtime-trt-repo-ubuntu1804-5.0.2-ga-cuda10.0
 RUN apt-get update && apt-get install libnvinfer5=5.1.2-1+cuda10.0
 RUN apt-get update && apt-get install -y python3 python3-pip
 
