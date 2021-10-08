@@ -1,0 +1,11 @@
+version: '2.3'
+services:
+  tomii_elecpy:
+    image: bmpelab/elecpy:cuda10.0-cudnn7-py3-ubuntu18.04
+    runtime: nvidia
+    container_name: tomii_elecpy
+    ports:
+      - "10010:8888"
+    volumes:
+      - ../:/notebooks
+      - /data:/data
