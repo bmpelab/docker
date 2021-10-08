@@ -1,0 +1,1 @@
+docker build . -t bmpelab/deapmap:cuda8.0-cudnn7-devel-ubuntu16.04
