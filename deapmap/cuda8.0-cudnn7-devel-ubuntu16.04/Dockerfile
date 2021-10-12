@@ -1,12 +1,11 @@
-#FROM nvidia/cuda:latest
-#FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
 FROM tensorflow/tensorflow:1.8.0-gpu-py3
 
-MAINTAINER ogyu <remington2112@g.ecc.u-tokyo.ac.jp>
+MAINTAINER BMPE <support@bmpe.t.u-tokyo.ac.jp>
 
-RUN apt-get update
-RUN apt-get install -y libgl1-mesa-dev
-RUN apt-get install -y libsm6 libxext6 libxrender-dev
+RUN apt update
+RUN apt -y upgrade
+RUN apt install -y libgl1-mesa-dev
+RUN apt install -y libsm6 libxext6 libxrender-dev ffmpeg
 
 ##########################
 RUN pip install -U pip
