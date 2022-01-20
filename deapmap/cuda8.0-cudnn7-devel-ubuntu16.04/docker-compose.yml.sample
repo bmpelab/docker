@@ -7,5 +7,5 @@ services:
     ports:
       - "[user_id*10+n]:8888"
     volumes:
-      - ../:/notebooks
+      - ../:/home/docker/notebooks
       - /data:/data
