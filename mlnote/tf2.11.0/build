@@ -1,0 +1,1 @@
+docker build . -t bmpelab/mlnote:tf2.11.0
