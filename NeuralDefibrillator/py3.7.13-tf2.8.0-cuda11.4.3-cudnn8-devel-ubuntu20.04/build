@@ -1,0 +1,1 @@
+docker build . -t bmpelab/elecpy:py3.7.13-tf2.8.0-cuda11.4.3-cudnn8-devel-ubuntu20.04
