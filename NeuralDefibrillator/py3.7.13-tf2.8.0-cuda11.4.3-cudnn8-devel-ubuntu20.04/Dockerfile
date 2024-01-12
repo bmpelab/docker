@@ -50,6 +50,7 @@ RUN pip3 install tensorflow-gpu==2.8.0  # TensorFlow 2.8.0のインストール
 RUN pip3 install tqdm
 RUN pip3 install protobuf==3.20.0
 RUN pip3 install pyculib
+RUN pip3 install natsort
 
 # ユーザーの追加
 RUN useradd -U -m -u 999 docker
