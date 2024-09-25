@@ -56,7 +56,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
 RUN pip install numpy scipy matplotlib ipython jupyter pandas sympy nose
 RUN pip install numba
 RUN pip install cupy-cuda114  # CUDA 11.4用のCuPy
-RUN pip install torch torchvision torchaudio
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 RUN pip install tqdm
 RUN pip install protobuf==3.20.0
 RUN pip install pyculib
