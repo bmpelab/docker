@@ -12,14 +12,9 @@ ENV TZ=Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # 必要なパッケージのインストール
-RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get dist-upgrade -y
-RUN apt-get autoremove -y
-RUN apt-get autoclean -y
-
-RUN apt-get -y install build-essential \
-                   git vim curl wget zsh make ffmpeg wget bzip2 \
+RUN apt-get update --fix-missing && apt-get -y install \
+                   build-essential \
+                   git vim curl wget zsh make ffmpeg bzip2 \
                    ca-certificates \
                    zlib1g-dev \
                    libssl-dev \
@@ -38,29 +33,25 @@ RUN apt-get -y install build-essential \
                    mercurial \
                    subversion
 
-# Python 3.10用のPPAを追加してインストール
-RUN apt-get install -y gnupg2 curl
-RUN apt-get install software-properties-common -y
-RUN add-apt-repository ppa:deadsnakes/ppa -y
-RUN apt-get install python3.10 -y
-RUN apt-get update -y
-RUN apt-get install -y libgl1-mesa-dev
-RUN apt-get remove python-pip
-RUN apt-get install python3.10-distutils -y
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+# Python 3.7のPPAを追加し、インストール
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update
+RUN apt-get install -y python3.7 python3.7-dev python3.7-venv python3-pip
 
-# pythonコマンドの参照先をPython3.10に変更
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+# pipのアップグレード
+RUN python3.7 -m pip install --upgrade pip
 
 # Pythonパッケージのインストール
-RUN pip install numpy scipy matplotlib ipython jupyter pandas sympy nose
-RUN pip install numba
-RUN pip install cupy-cuda114  # CUDA 11.4用のCuPy
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-RUN pip install tqdm
-RUN pip install protobuf==3.20.0
-RUN pip install pyculib
-RUN pip install natsort
+RUN pip3 install numpy scipy matplotlib ipython jupyter pandas sympy nose h5py
+RUN pip3 install numba
+RUN pip3 install chainer
+RUN pip3 install cupy-cuda114  # CUDA 11.4用のCuPy
+RUN pip3 install torch torchvision torchaudio
+RUN pip3 install tqdm
+RUN pip3 install protobuf==3.20.0
+RUN pip3 install pyculib
+RUN pip3 install natsort
 
 # ユーザーの追加
 RUN useradd -U -m -u 999 docker
@@ -92,7 +83,7 @@ RUN echo "cloning dotfiles"
 WORKDIR $HOME
 RUN git clone https://github.com/chenaoki/dotfiles.git
 WORKDIR $HOME/dotfiles
-RUN python install.py
+RUN python3.7 install.py
 
 # 作業ディレクトリの変更
 WORKDIR $NOTEBOOK_HOME
