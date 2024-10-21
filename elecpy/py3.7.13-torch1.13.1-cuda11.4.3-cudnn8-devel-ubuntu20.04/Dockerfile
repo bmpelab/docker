@@ -55,6 +55,7 @@ RUN pip3 install tqdm
 RUN pip3 install protobuf==3.20.0
 RUN pip3 install pyculib
 RUN pip3 install natsort
+RUN pip3 install isort
 
 # ユーザーの追加
 RUN useradd -U -m -u 999 docker
@@ -62,6 +63,7 @@ RUN groupmod -g 999 docker
 
 # 環境変数の設定
 ENV HOME /home/docker
+ENV PATH="/home/docker/.local/bin:${PATH}"
 ENV NOTEBOOK_HOME $HOME/notebooks
 ENV LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64:$LD_LIBRARY_PATH
 
