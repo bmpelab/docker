@@ -39,6 +39,9 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
 RUN apt-get install -y python3.7 python3.7-dev python3.7-venv python3-pip
 
+# デフォルトのPythonを3.7に設定
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
+
 # pipのアップグレード
 RUN python3.7 -m pip install --upgrade pip
 
