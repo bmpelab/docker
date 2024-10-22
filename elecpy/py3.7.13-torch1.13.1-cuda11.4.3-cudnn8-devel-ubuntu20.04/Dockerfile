@@ -56,6 +56,7 @@ RUN pip3 install protobuf==3.20.0
 RUN pip3 install pyculib
 RUN pip3 install natsort
 RUN pip3 install isort
+RUN pip3 install opencv-python
 
 # ユーザーの追加
 RUN useradd -U -m -u 999 docker
